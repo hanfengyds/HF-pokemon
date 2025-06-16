@@ -1,0 +1,569 @@
+/* 基础重置 */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+  font-family: 'Arial', sans-serif;
+}
+
+/* 中央容器 */
+.container {
+  width: 800px;  /* 精确宽度：5列×150px + 4间隙×12.5px = 800px */
+  height: 600px; /* 精确高度：6行×95px + 5间隙×10px = 600px */
+  margin: 20px auto;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+/* 网格容器 */
+.grid-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 150px); /* 5列固定宽度 */
+  grid-auto-rows: 80px; /* 单行高度（图片80px + 间距） */
+  gap: 10px 12.5px; /* 行间隙10px，列间隙12.5px */
+  overflow-y: auto; /* 垂直滚动 */
+  padding-right: 5px; /* 为滚动条留空间 */
+}
+
+/* 精确计算的可视区域：
+   每行高度 = 95px (80px图片 + 15px文字区域)
+   6行总高度 = 6×95px + 5×10px间隙 = 620px
+   容器高度600px会显示完整5行(5×95+4×10=515px) + 部分第6行
+   实际需要调整为：行高90px，间隙10px → 6×90 + 5×10 = 590px (600px容器能完整显示)
+*/
+
+/* 修正后的行高 */
+.grid-container {
+  grid-auto-rows: 90px; /* 确保6行完美显示 */
+}
+
+/* 宝可梦卡片样式 */
+.grid-container .pokemon-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+/* 图片样式 */
+.grid-container .pokemon-card img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  image-rendering: high-quality;
+  transition: transform 0.2s;
+}
+
+/* 名称样式 */
+.grid-container .pokemon-card .name {
+  margin-top: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #333;
+  text-align: center;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 悬停效果 */
+.grid-container .pokemon-card:hover img {
+  transform: scale(1.2);
+}
+
+.grid-container .pokemon-card:hover .name {
+  font-weight: bold;
+  color: #0066cc;
+}
+
+/* 滚动条样式 */
+.grid-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.grid-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.grid-container::-webkit-scrollbar-thumb {
+  background: #a0a0a0;
+  border-radius: 4px;
+}
+
+.grid-container::-webkit-scrollbar-thumb:hover {
+  background: #808080;
+}
+
+.container {
+  width: 1060px;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 调整容器宽度以适应新面板 */
+.container {
+  width: 1080px; /* 800 + 150*2 + 15*2 */
+}
+
+/* 调整卡池宽度 */
+.grid-container {
+  width: 800px;
+}
+
+.team-panel {
+  width: 120px;
+  height: 520px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+#redTeam {
+  background-color: rgba(217, 216, 216, 0.5);
+}
+
+#blueTeam {
+  background-color: rgba(217, 216, 216, 0.5);
+}
+
+.team-panel {
+    display: flex;
+    flex-direction: column;
+    height: calc(6 * 85px); /* 6行图片，每行高度60px */
+    overflow: hidden; /* 隐藏超出部分 */
+}
+
+.team-panel .pokemon-card {
+    height: 70px; /* 每行高度 */
+    margin: 2.5px auto; /* 缩小间距 */
+    transform: scale(0.6); /* 缩小图片尺寸 */
+    transform-origin: center;
+}
+
+.pokemon-card:active {
+  cursor: grabbing;
+}
+
+.pokemon-card[draggable="true"] {
+  user-select: none;
+}
+
+.bench-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.bench-slot {
+  width: 30%;
+  height: 100px;
+  border: 1px dashed #ccc;
+  background-color: rgba(255,255,255,0.5);
+}
+
+.pokemon-card {
+    position: relative;
+}
+
+.type-tags {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    display: flex;
+    gap: 3px;
+}
+
+.type-tags span {
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* 属性标签颜色 */
+.type-tags span[data-type="草"] { 
+    background-color: #74e33c; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="毒"] { 
+    background-color: #b55aa5; 
+    color: rgb(255, 255, 255); 
+}
+
+.type-tags span[data-type="火"] { 
+    background-color: #ff8a37; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="水"] { 
+    background-color: #6890F0; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="电"] { 
+    background-color: #f6ff00; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="冰"] { 
+    background-color: #00f7ff; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="格斗"] { 
+    background-color: #a55239; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="超能"] { 
+    background-color: #ff73a5; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="妖精"] { 
+    background-color: #ff65d5; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="虫"] { 
+    background-color: #c4d717; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="地面"] { 
+    background-color: #e9c72f; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="岩石"] { 
+    background-color: #bda55a; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="钢"] { 
+    background-color: #bcbcbc; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="一般"] { 
+    background-color: #ada594; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="幽灵"] { 
+    background-color: #9c00a1; 
+    color: rgb(255, 255, 255); 
+}
+
+.type-tags span[data-type="龙"] { 
+    background-color: #7b63e7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="飞行"] { 
+    background-color: #9cadf7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="恶"] { 
+    background-color: #735a4a; 
+    color: rgb(255, 255, 255); 
+}
+
+.search-container {
+  width: 100%;
+  padding: 20px 0;
+  background: #f8f8f8;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#searchInput {
+  width: 60%;
+  max-width: 500px;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+}
+
+#searchInput:focus {
+  border-color: #4a90e2;
+}
+
+.type-tags span[data-type="毒"] { 
+    background-color: #b55aa5; 
+    color: rgb(255, 255, 255); 
+}
+
+.type-tags span[data-type="火"] { 
+    background-color: #ff8a37; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="水"] { 
+    background-color: #6890F0; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="电"] { 
+    background-color: #f6ff00; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="冰"] { 
+    background-color: #00f7ff; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="格斗"] { 
+    background-color: #a55239; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="超能"] { 
+    background-color: #ff73a5; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="妖精"] { 
+    background-color: #ff65d5; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="虫"] { 
+    background-color: #c4d717; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="地面"] { 
+    background-color: #e9c72f; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="岩石"] { 
+    background-color: #bda55a; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="钢"] { 
+    background-color: #bcbcbc; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="一般"] { 
+    background-color: #ada594; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="幽灵"] { 
+    background-color: #9c00a1; 
+    color: rgb(255, 255, 255); 
+}
+
+.type-tags span[data-type="龙"] { 
+    background-color: #7b63e7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="飞行"] { 
+    background-color: #9cadf7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="恶"] { 
+    background-color: #735a4a; 
+    color: rgb(255, 255, 255); 
+}
+
+.pokemon-card.disabled::after {
+  content: "禁";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: red;
+  font-size: 48px;
+  font-weight: bold;
+  z-index: 10;
+  filter: none !important;
+}
+
+.pokemon-card.disabled {
+  position: relative;
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+.type-tags span[data-type="毒"] { 
+    background-color: #b55aa5; 
+    color: rgb(255, 255, 255); 
+}
+
+.type-tags span[data-type="火"] { 
+    background-color: #ff8a37; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="水"] { 
+    background-color: #6890F0; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="电"] { 
+    background-color: #f6ff00; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="冰"] { 
+    background-color: #00f7ff; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="格斗"] { 
+    background-color: #a55239; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="超能"] { 
+    background-color: #ff73a5; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="妖精"] { 
+    background-color: #ff65d5; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="虫"] { 
+    background-color: #c4d717; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="地面"] { 
+    background-color: #e9c72f; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="岩石"] { 
+    background-color: #bda55a; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="钢"] { 
+    background-color: #bcbcbc; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="一般"] { 
+    background-color: #ada594; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="幽灵"] { 
+    background-color: #9c00a1; 
+    color: rgb(255, 255, 255); 
+}
+
+.type-tags span[data-type="龙"] { 
+    background-color: #7b63e7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="飞行"] { 
+    background-color: #9cadf7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="恶"] { 
+    background-color: #735a4a; 
+    color: rgb(255, 255, 255); 
+}
+
+#online-controls {
+  margin: 20px;
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+#room-creation, #room-joining {
+  margin-bottom: 15px;
+}
+
+#tier-select, #room-code, #join-code {
+  padding: 8px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px 15px;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #45a049;
+}
+.type-tags span[data-type="虫"] { 
+    background-color: #c4d717; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="地面"] { 
+    background-color: #e9c72f; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="岩石"] { 
+    background-color: #bda55a; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="钢"] { 
+    background-color: #bcbcbc; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="一般"] { 
+    background-color: #ada594; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="幽灵"] { 
+    background-color: #9c00a1; 
+    color: rgb(255, 255, 255); 
+}
+
+.type-tags span[data-type="龙"] { 
+    background-color: #7b63e7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="飞行"] { 
+    background-color: #9cadf7; 
+    color: rgb(0, 0, 0); 
+}
+
+.type-tags span[data-type="恶"] { 
+    background-color: #735a4a; 
+    color: rgb(255, 255, 255); 
+}
