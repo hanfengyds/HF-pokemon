@@ -2,18 +2,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>宝可梦卡池</title>
+    <title>宝可梦卡池 - 双人对战</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
 </head>
 <body>
     <div class="search-container">
         <input type="text" id="searchInput" placeholder="搜索精灵(中/英文)">
+        <div class="pool-selector">
+            <select id="poolSelect">
+                <option value="default">全部卡池</option>
+                <option value="Gen9ou">Gen9ou</option>
+            </select>
+        </div>
+        <div id="online-controls">
+            <div id="room-creation">
+                <button id="createRoomBtn">创建房间</button>
+                <span id="roomIdDisplay"></span>
+            </div>
+            <div id="room-joining">
+                <input type="text" id="roomIdInput" placeholder="输入房间ID">
+                <button id="joinRoomBtn">加入房间</button>
+            </div>
+            <div id="player-status">
+                <span id="playerRole"></span>
+                <span id="opponentStatus"></span>
+            </div>
+        </div>
     </div>
     <div class="container">
         <div class="team-panel" id="redTeam" data-team="red"></div>
         <div class="grid-container" id="cardPool"></div>
         <div class="team-panel" id="blueTeam" data-team="blue"></div>
     </div>
+    <script src="tiers.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
