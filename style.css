@@ -159,19 +159,6 @@ body {
   user-select: none;
 }
 
-.bench-panel {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.bench-slot {
-  width: 30%;
-  height: 100px;
-  border: 1px dashed #ccc;
-  background-color: rgba(255,255,255,0.5);
-}
 
 .pokemon-card {
     position: relative;
@@ -504,12 +491,6 @@ body {
   margin-bottom: 15px;
 }
 
-#tier-select, #room-code, #join-code {
-  padding: 8px;
-  margin-right: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
 
 button {
   padding: 8px 15px;
@@ -566,4 +547,34 @@ button:hover {
 .type-tags span[data-type="恶"] { 
     background-color: #735a4a; 
     color: rgb(255, 255, 255); 
+}
+
+.tier-filter {
+  position: relative;
+  display: inline-block;
+}
+
+.tier-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.tier-dropdown.show {
+  display: block;
+}
+
+.pool-selector {
+  margin: 20px;
+  text-align: center;
+}
+
+#poolSelect {
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: 2px solid #3b3b3b;
+  background: #2d2d2d;
+  color: white;
 }
