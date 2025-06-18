@@ -1,14 +1,14 @@
 // 初始化Firebase
 const firebaseConfig = {
-    apiKey: "AIzaSyBZMASkGDRE9gA4Hg26oWrPSQewY0kYsUo",
-    authDomain: "hf-bp-emulator.firebaseapp.com",
-    databaseURL: "https://hf-bp-emulator-default-rtdb.firebaseio.com",
-    projectId: "hf-bp-emulator",
-    storageBucket: "hf-bp-emulator.firebasestorage.app",
-    messagingSenderId: "170555934357",
-    appId: "1:170555934357:web:baed613475c89c23fa3d9c",
-    measurementId: "G-LZKRY94JJ1"
-  };
+  apiKey: "AIzaSyAuYq4BetwW1kQIfxqQtd1Fq3PKzW45hj0",
+  authDomain: "hf-poke.firebaseapp.com",
+  databaseURL: "https://hf-poke-default-rtdb.firebaseio.com",
+  projectId: "hf-poke",
+  storageBucket: "hf-poke.firebasestorage.app",
+  messagingSenderId: "463196183278",
+  appId: "1:463196183278:web:1042a4d15c9f7a47dfb1ff",
+  measurementId: "G-29EVDZBZ2W"
+};
   
   // 初始化Firebase
   firebase.initializeApp(firebaseConfig);
